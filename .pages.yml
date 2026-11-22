@@ -1,0 +1,81 @@
+media:
+  input: assets/uploads
+  output: /assets/uploads
+  categories: [image]
+  extensions: [jpg, jpeg, png, webp]
+
+content:
+  - name: site
+    label: Dane strony THANOS
+    type: file
+    path: data/site.json
+    format: json
+    fields:
+      - name: company_name
+        label: Nazwa firmy
+        type: string
+
+      - name: hero_title
+        label: Nagłówek strony głównej
+        type: string
+
+      - name: hero_description
+        label: Opis strony głównej
+        type: text
+
+      - name: about_text
+        label: Opis firmy
+        type: text
+
+      - name: year
+        label: Rok założenia
+        type: string
+
+      - name: address
+        label: Adres firmy
+        type: string
+
+      - name: phone_joanna
+        label: Telefon Joanna
+        type: string
+
+      - name: phone_michal
+        label: Telefon Michał
+        type: string
+
+      - name: email
+        label: Adres e-mail
+        type: string
+
+      - name: nip
+        label: NIP
+        type: string
+
+      - name: services
+        label: Usługi
+        type: object
+        list:
+          collapsible: true
+        fields:
+          - name: name
+            label: Nazwa usługi
+            type: string
+          - name: description
+            label: Opis usługi
+            type: text
+          - name: price
+            label: Cena
+            type: string
+
+      - name: gallery
+        label: Zdjęcia realizacji
+        type: object
+        list:
+          collapsible: true
+        fields:
+          - name: title
+            label: Tytuł zdjęcia
+            type: string
+          - name: image
+            label: Zdjęcie
+            type: image
