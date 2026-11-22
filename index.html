@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="THANOS Building Construction – budowa domów jednorodzinnych i kompleksowe prace budowlano-wykończeniowe. Województwo łódzkie.">
+<title>THANOS Building Construction | Budowa i wykończenia</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#start" aria-label="THANOS Building Construction – strona główna">
+    <img src="assets/logo-thanos-white.png" alt="Logo THANOS BC">
+    <span><b>THANOS</b><small>BUILDING CONSTRUCTION</small></span>
+  </a>
+  <button class="menu-toggle" aria-label="Otwórz menu" onclick="document.querySelector('.nav').classList.toggle('open')">☰</button>
+  <nav class="nav">
+    <a href="#ofirma">O firmie</a><a href="#uslugi">Usługi</a><a href="#realizacje">Realizacje</a><a href="#kontakt" class="nav-cta">Kontakt</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero" id="start">
+  <div class="hero-copy">
+    <p class="eyebrow"><span></span> SOLIDNE WYKONANIE • OD 2019 ROKU</p>
+    <h1>Budujemy solidne<br><em>podstawy</em> na lata.</h1>
+    <p class="lead">Budowa domów jednorodzinnych oraz prace budowlane i wykończeniowe. Od fundamentów po ostatnie detale wnętrza.</p>
+    <div class="hero-actions"><a class="btn primary" href="#kontakt">Porozmawiajmy o budowie <b>↗</b></a><a class="text-link" href="#uslugi">Poznaj nasze usługi <span>→</span></a></div>
+  </div>
+  <div class="hero-mark">
+    <div class="mark-frame"><img src="assets/logo-thanos-white.png" alt="THANOS Building Construction"></div>
+    <div class="mark-caption"><span>DOŚWIADCZENIE</span><b>OD 2019</b></div>
+  </div>
+  <div class="hero-bottom"><span>WOJEWÓDZTWO ŁÓDZKIE</span><span>RZETELNOŚĆ / JAKOŚĆ / TERMINOWOŚĆ</span></div>
+</section>
+
+<section class="intro section" id="ofirma">
+  <div class="section-tag">01 / O FIRMIE</div>
+  <div class="intro-content"><h2>Dobry dom zaczyna się<br>od <em>dobrego wykonania.</em></h2>
+  <p>THANOS Building Construction to firma budowlana działająca od 2019 roku. Realizujemy budowy domów jednorodzinnych oraz szeroki zakres robót budowlanych i wykończeniowych na terenie województwa łódzkiego.</p>
+  <p>Stawiamy na konkretne ustalenia, staranność i solidne wykonanie każdego etapu prac.</p></div>
+  <div class="years"><strong>2019</strong><span>ROK ZAŁOŻENIA FIRMY</span></div>
+</section>
+
+<section class="services section" id="uslugi">
+  <div class="section-tag">02 / ZAKRES PRAC</div>
+  <div class="section-heading"><div><h2>Co możemy<br><em>dla Ciebie zrobić?</em></h2></div><p>Od prac konstrukcyjnych po wykończenie wnętrz. Zakres i wycenę ustalamy indywidualnie dla każdej inwestycji.</p></div>
+  <div class="service-grid" id="serviceGrid"></div>
+  <p class="small-note">Wykonanie konstrukcji i pokrycia dachu realizują wyspecjalizowane firmy dekarskie.</p>
+</section>
+
+<section class="projects section" id="realizacje">
+  <div class="section-tag">03 / NASZE REALIZACJE</div>
+  <div class="section-heading"><div><h2>Prace, które<br><em>mówią same za siebie.</em></h2></div><p>Tu pojawią się zdjęcia Twoich realizacji. Dodaj fotografie w trybie edycji strony.</p></div>
+  <div class="gallery" id="gallery">
+    <div class="gallery-empty"><span>＋</span><b>Twoje realizacje</b><small>Miejsce na zdjęcia wykonanych prac</small></div>
+    <div class="gallery-empty"><span>＋</span><b>Etapy budowy</b><small>Pokaż klientom przebieg prac</small></div>
+    <div class="gallery-empty"><span>＋</span><b>Wykończenia</b><small>Dodaj zdjęcia gotowych wnętrz</small></div>
+  </div>
+</section>
+
+<section class="contact section" id="kontakt">
+  <div class="section-tag">04 / KONTAKT</div>
+  <div class="contact-layout"><div><h2>Masz plan?<br><em>Zbudujmy go.</em></h2><p>Skontaktuj się, aby omówić zakres prac i możliwości realizacji.</p></div>
+  <div class="contact-card"><span class="contact-label">THANOS BUILDING CONSTRUCTION</span><h3>Porozmawiajmy o Twojej inwestycji.</h3><p>📍 Mierzyn 69B<br>Gmina Rozprza, 97-340<br>Województwo łódzkie</p><p>☎ <a href="tel:+48600223163">Joanna: 600 223 163</a><br>☎ <a href="tel:+48733005585">Michał: 733 005 585</a></p><p>✉ <a href="mailto:kontakt.thanosbc@gmail.com">kontakt.thanosbc@gmail.com</a></p><p>NIP: 7712878955</p><a class="btn primary" href="mailto:kontakt.thanosbc@gmail.com">Napisz wiadomość <b>↗</b></a></div></div>
+</section>
+</main>
+<footer><a class="footer-brand" href="#start">THANOS <span>BUILDING CONSTRUCTION</span></a><span>© <span id="year"></span> THANOS BC. Wszelkie prawa zastrzeżone.</span><a href="#start">Do góry ↑</a></footer>
+
+<button class="edit-launch" id="editLaunch" onclick="toggleEditor()">⚙ Edytuj stronę</button>
+<aside class="editor" id="editor" aria-label="Panel edycji">
+  <div class="editor-head"><div><b>Panel edycji</b><small>Zmiany zapisują się w tej przeglądarce</small></div><button onclick="toggleEditor()">✕</button></div>
+  <label>Nazwa telefonu / numer telefonu<input id="phoneInput" placeholder="np. 600 000 000"></label>
+  <label>Adres e-mail<input id="emailInput" type="email" placeholder="np. kontakt@twojafirma.pl"></label>
+  <label>Dodatkowe dane firmy<input id="companyInput" placeholder="np. NIP, godziny kontaktu"></label>
+  <div class="editor-subhead">Usługi i ceny</div>
+  <div id="editorServices"></div>
+  <div class="add-row"><input id="newService" placeholder="Nazwa usługi"><input id="newPrice" placeholder="Cena / jednostka"><button onclick="addService()">＋</button></div>
+  <div class="editor-subhead">Zdjęcia realizacji</div>
+  <label class="upload-label">Wybierz zdjęcia z urządzenia<input id="photoInput" type="file" accept="image/*" multiple></label>
+  <div class="editor-actions"><button class="btn primary" onclick="saveSettings()">Zapisz zmiany</button><button class="btn ghost" onclick="exportData()">Pobierz kopię danych</button></div>
+  <p class="editor-warning">Ważne: ten panel jest wersją demonstracyjną. Zapisane zmiany są widoczne w tej samej przeglądarce na tym urządzeniu. Po wyborze hostingu skonfigurujemy publikowanie zmian dla wszystkich odwiedzających.</p>
+</aside>
+<script src="script.js"></script>
+</body></html>
