@@ -1,23 +1,160 @@
-const defaults=[
-["Budowa domów jednorodzinnych","Od fundamentów do etapu wykończenia"],
-["Fundamenty i roboty konstrukcyjne","Prace na początkowych etapach inwestycji"],
-["Zabudowy gipsowo-kartonowe","Ścianki działowe, sufity i zabudowy GK"],
-["Gładzie i malowanie","Przygotowanie i wykończenie ścian oraz sufitów"],
-["Układanie płytek","Prace glazurnicze i okładziny"],
-["Rozbiórki i demontaże","Prace przygotowawcze i rozbiórkowe"],
-["Wylewki","Przygotowanie podłoży pod dalsze prace"],
-["Podłogi w piwnicach","Wykonywanie i wykańczanie podłóg"]
-];
-let services=JSON.parse(localStorage.getItem("thanos_services")||"null")||defaults.map(x=>({name:x[0],desc:x[1],price:""}));
-let settings=JSON.parse(localStorage.getItem("thanos_settings")||"{}");
-function renderServices(){document.getElementById("serviceGrid").innerHTML=services.map((s,i)=>`<article class="service"><span class="num">0${i+1} / USŁUGA</span><h3>${escapeHtml(s.name)}</h3><p>${escapeHtml(s.desc||"")}</p>${s.price?`<span class="price">${escapeHtml(s.price)}</span>`:""}</article>`).join("");document.getElementById("editorServices").innerHTML=services.map((s,i)=>`<div class="edit-service"><input aria-label="Nazwa usługi" value="${escapeAttr(s.name)}" onchange="services[${i}].name=this.value;saveLocal()"><input aria-label="Cena" placeholder="Cena" value="${escapeAttr(s.price||"")}" onchange="services[${i}].price=this.value;saveLocal()"><button onclick="services.splice(${i},1);saveLocal();renderServices()">×</button></div>`).join("")}
-function escapeHtml(v){return String(v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}function escapeAttr(v){return escapeHtml(v)}
-function saveLocal(){localStorage.setItem("thanos_services",JSON.stringify(services))}
-function toggleEditor(){document.getElementById("editor").classList.toggle("open")}
-function addService(){let n=document.getElementById("newService").value.trim(),p=document.getElementById("newPrice").value.trim();if(!n)return;services.push({name:n,desc:"",price:p});document.getElementById("newService").value="";document.getElementById("newPrice").value="";saveLocal();renderServices()}
-function saveSettings(){settings={phone:document.getElementById("phoneInput").value,email:document.getElementById("emailInput").value,company:document.getElementById("companyInput").value};localStorage.setItem("thanos_settings",JSON.stringify(settings));saveLocal();applySettings();alert("Zapisano w tej przeglądarce.")}
-function applySettings(){let card=document.querySelector(".contact-card");let contact=card.querySelector("p");contact.innerHTML="📍 Mierzyn 69B<br>Gmina Rozprza , 97-340<br>Województwo łódzkie"+(settings.phone?`<br>☎ ${escapeHtml(settings.phone)}`:"")+(settings.email?`<br>✉ ${escapeHtml(settings.email)}`:"")+(settings.company?`<br>${escapeHtml(settings.company)}`:"");let mail=card.querySelector(".btn");mail.href=settings.email?"mailto:"+encodeURIComponent(settings.email):"mailto:";mail.innerHTML=settings.email?"Napisz wiadomość <b>↗</b>":"Uzupełnij e-mail <b>↗</b>"}
-document.getElementById("photoInput").addEventListener("change",e=>{let files=[...e.target.files];let gallery=document.getElementById("gallery");gallery.innerHTML="";files.forEach(f=>{let url=URL.createObjectURL(f),img=document.createElement("img");img.src=url;img.alt="Zdjęcie realizacji THANOS BC";gallery.appendChild(img)})});
-function exportData(){let data={services,settings};let blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="thanos-dane-strony.json";a.click();URL.revokeObjectURL(a.href)}
-document.getElementById("year").textContent=new Date().getFullYear();
-document.getElementById("phoneInput").value=settings.phone||"";document.getElementById("emailInput").value=settings.email||"";document.getElementById("companyInput").value=settings.company||"";renderServices();applySettings();
+async function loadSiteData() {
+  try {
+    const response = await fetch("data/site.json");
+
+    if (!response.ok) {
+      throw new Error("Nie udało się pobrać danych firmy.");
+    }
+
+    const data = await response.json();
+
+    // Nagłówek i opis strony
+    const heroTitle = document.querySelector(".hero h1");
+    if (heroTitle && data.hero_title) {
+      heroTitle.textContent = data.hero_title;
+    }
+
+    const heroDescription = document.querySelector(".hero .lead");
+    if (heroDescription && data.hero_description) {
+      heroDescription.textContent = data.hero_description;
+    }
+
+    // Opis firmy
+    const about = document.querySelector(".intro-content p");
+    if (about && data.about_text) {
+      about.textContent = data.about_text;
+    }
+
+    // Rok założenia
+    document.querySelectorAll(".years strong, .mark-caption b")
+      .forEach(el => {
+        if (data.year) el.textContent = data.year;
+      });
+
+    // Usługi
+    const serviceGrid = document.getElementById("serviceGrid");
+
+    if (serviceGrid && Array.isArray(data.services)) {
+      serviceGrid.innerHTML = "";
+
+      data.services.forEach((service, index) => {
+        const article = document.createElement("article");
+        article.className = "service";
+
+        const number = document.createElement("span");
+        number.className = "num";
+        number.textContent =
+          String(index + 1).padStart(2, "0") + " / USŁUGA";
+
+        const title = document.createElement("h3");
+        title.textContent = service.name || "";
+
+        const description = document.createElement("p");
+        description.textContent = service.description || "";
+
+        article.append(number, title, description);
+
+        if (service.price) {
+          const price = document.createElement("span");
+          price.className = "price";
+          price.textContent = service.price;
+          article.appendChild(price);
+        }
+
+        serviceGrid.appendChild(article);
+      });
+    }
+
+    // Dane kontaktowe
+    const contactCard = document.querySelector(".contact-card");
+
+    if (contactCard) {
+      const paragraphs = contactCard.querySelectorAll("p");
+
+      if (paragraphs[0] && data.address) {
+        paragraphs[0].textContent = "📍 " + data.address;
+      }
+
+      if (paragraphs[1]) {
+        paragraphs[1].innerHTML = "";
+
+        if (data.phone_joanna) {
+          const link = document.createElement("a");
+          link.href = "tel:" + data.phone_joanna.replace(/\s/g, "");
+          link.textContent = "Joanna: " + data.phone_joanna;
+          paragraphs[1].append("☎ ", link);
+        }
+
+        if (data.phone_michal) {
+          const link = document.createElement("a");
+          link.href = "tel:" + data.phone_michal.replace(/\s/g, "");
+          link.textContent = "Michał: " + data.phone_michal;
+          paragraphs[1].append(document.createElement("br"), "☎ ", link);
+        }
+      }
+
+      if (paragraphs[2] && data.email) {
+        paragraphs[2].innerHTML = "";
+
+        const link = document.createElement("a");
+        link.href = "mailto:" + data.email;
+        link.textContent = data.email;
+        paragraphs[2].append("✉ ", link);
+      }
+
+      if (paragraphs[3] && data.nip) {
+        paragraphs[3].textContent = "NIP: " + data.nip;
+      }
+    }
+
+    // Galeria realizacji
+    const gallery = document.getElementById("gallery");
+
+    if (gallery && Array.isArray(data.gallery) && data.gallery.length) {
+      gallery.innerHTML = "";
+
+      data.gallery.forEach(item => {
+        const imagePath =
+          typeof item.image === "string"
+            ? item.image
+            : item.image?.path || item.image?.url || "";
+
+        if (!imagePath) return;
+
+        const figure = document.createElement("figure");
+        figure.className = "gallery-item";
+
+        const img = document.createElement("img");
+        img.src = imagePath;
+        img.alt = item.title || "Realizacja THANOS BC";
+
+        figure.appendChild(img);
+
+        if (item.title) {
+          const caption = document.createElement("figcaption");
+          caption.textContent = item.title;
+          figure.appendChild(caption);
+        }
+
+        gallery.appendChild(figure);
+      });
+    }
+
+    // Nazwa firmy
+    const brand = document.querySelector(".contact-label");
+    if (brand && data.company_name) {
+      brand.textContent = data.company_name.toUpperCase();
+    }
+
+    // Rok w stopce
+    const yearElement = document.getElementById("year");
+    if (yearElement) {
+      yearElement.textContent = new Date().getFullYear();
+    }
+
+  } catch (error) {
+    console.error("Błąd wczytywania danych THANOS:", error);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", loadSiteData);
