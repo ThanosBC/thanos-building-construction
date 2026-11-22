@@ -12,44 +12,35 @@
   "services": [
     {
       "name": "Budowa domów jednorodzinnych",
-      "description": "Od fundamentów do etapu wykończenia",
-      "price": ""
+      "description": "Od fundamentów do etapu wykończenia"
     },
     {
       "name": "Fundamenty i roboty konstrukcyjne",
-      "description": "Prace na początkowych etapach inwestycji",
-      "price": ""
+      "description": "Prace na początkowych etapach inwestycji"
     },
     {
       "name": "Zabudowy gipsowo-kartonowe",
-      "description": "Ścianki działowe, sufity i zabudowy GK",
-      "price": ""
+      "description": "Ścianki działowe, sufity i zabudowy GK"
     },
     {
       "name": "Gładzie i malowanie",
-      "description": "Przygotowanie i wykończenie ścian oraz sufitów",
-      "price": ""
+      "description": "Przygotowanie i wykończenie ścian oraz sufitów"
     },
     {
       "name": "Układanie płytek",
-      "description": "Prace glazurnicze i okładziny",
-      "price": ""
+      "description": "Prace glazurnicze i okładziny"
     },
     {
       "name": "Rozbiórki i demontaże",
-      "description": "Prace przygotowawcze i rozbiórkowe",
-      "price": ""
+      "description": "Prace przygotowawcze i rozbiórkowe"
     },
     {
       "name": "Wylewki",
-      "description": "Przygotowanie podłoży pod dalsze prace",
-      "price": ""
+      "description": "Przygotowanie podłoży pod dalsze prace"
     },
     {
-      "name": "Podłogi w piwnicach",
-      "description": "Wykonywanie i wykańczanie podłóg",
-      "price": ""
+      "name": "Podpiwniczenie istniejących budynków",
+      "description": "Wykonywanie i wykańczanie podłóg"
     }
-  ],
-  "gallery": []
+  ]
 }
