@@ -1,0 +1,55 @@
+{
+  "company_name": "THANOS Building Construction",
+  "hero_title": "Budujemy solidne podstawy na lata.",
+  "hero_description": "Budowa domów jednorodzinnych oraz prace budowlane i wykończeniowe. Od fundamentów po ostatnie detale wnętrza.",
+  "about_text": "THANOS Building Construction to firma budowlana działająca od 2019 roku. Realizujemy budowy domów jednorodzinnych oraz szeroki zakres robót budowlanych i wykończeniowych na terenie województwa łódzkiego. Stawiamy na konkretne ustalenia, staranność i solidne wykonanie każdego etapu prac.",
+  "year": "2019",
+  "address": "Mierzyn 69B, Gmina Rozprza, 97-340, województwo łódzkie",
+  "phone_joanna": "600 223 163",
+  "phone_michal": "733 005 585",
+  "email": "kontakt.thanosbc@gmail.com",
+  "nip": "7712878955",
+  "services": [
+    {
+      "name": "Budowa domów jednorodzinnych",
+      "description": "Od fundamentów do etapu wykończenia",
+      "price": ""
+    },
+    {
+      "name": "Fundamenty i roboty konstrukcyjne",
+      "description": "Prace na początkowych etapach inwestycji",
+      "price": ""
+    },
+    {
+      "name": "Zabudowy gipsowo-kartonowe",
+      "description": "Ścianki działowe, sufity i zabudowy GK",
+      "price": ""
+    },
+    {
+      "name": "Gładzie i malowanie",
+      "description": "Przygotowanie i wykończenie ścian oraz sufitów",
+      "price": ""
+    },
+    {
+      "name": "Układanie płytek",
+      "description": "Prace glazurnicze i okładziny",
+      "price": ""
+    },
+    {
+      "name": "Rozbiórki i demontaże",
+      "description": "Prace przygotowawcze i rozbiórkowe",
+      "price": ""
+    },
+    {
+      "name": "Wylewki",
+      "description": "Przygotowanie podłoży pod dalsze prace",
+      "price": ""
+    },
+    {
+      "name": "Podłogi w piwnicach",
+      "description": "Wykonywanie i wykańczanie podłóg",
+      "price": ""
+    }
+  ],
+  "gallery": []
+}
